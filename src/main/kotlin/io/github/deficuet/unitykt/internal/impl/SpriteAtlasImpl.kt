@@ -37,7 +37,7 @@ internal class SpriteAtlasImpl(
         reader.readAlignedStringArray()    //m_PackedSpriteNamesToIndex
         val buffer = ByteBuffer.allocate(16)
         fmRenderDataMap = reader.readArrayOf {
-            buffer.put(reader.read(16))
+            buffer.put(reader.read(16)).position(0)
             val second = reader.readInt64()
             val value = SpriteAtlasDataImpl(reader)
             val ret = (UUID(buffer.long, buffer.long) to second) to value
@@ -47,6 +47,9 @@ internal class SpriteAtlasImpl(
         reader.readAlignedString()      //m_Tag
         fmIsVariant = reader.readBool()
         reader.alignStream()
+    }
+
+    override fun postRead() {
         for (packedSprite in fmPackedSprites) {
             val sprite = packedSprite.safeGetObj()
             if (sprite != null) {

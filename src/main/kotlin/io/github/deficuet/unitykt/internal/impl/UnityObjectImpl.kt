@@ -44,12 +44,15 @@ internal open class UnityObjectImpl(
         if (platform == BuildTarget.NoTarget) reader.skip(4)   //m_ObjectHideFlags: UInt
     }
 
+    protected open fun postRead() {  }
+
     private var initialized = false
 
     protected fun checkInitialize() {
         if (!initialized) {
             read()
             initialized = true
+            postRead()
         }
     }
 }

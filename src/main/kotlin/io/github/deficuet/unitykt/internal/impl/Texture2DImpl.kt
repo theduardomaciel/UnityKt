@@ -68,6 +68,9 @@ internal class Texture2DImpl(
         if (version[0] >= 2020) reader.skip(1)     //m_IsPreProcessed: Boolean
         if (version >= intArrayOf(2019, 3)) reader.skip(1)     //m_IgnoreMasterTextureLimit: Boolean
         if (version[0] >= 3 && version <= intArrayOf(5, 4)) reader.skip(1)      //m_ReadAllowed: Boolean
+        if (version >= intArrayOf(2022, 3, 51)) {
+            reader.readAlignedString()      //m_MipmapLimitGroupName
+        }
         if (version >= intArrayOf(2018, 2)) reader.skip(1)     //m_StreamingMipmaps: Boolean
         reader.alignStream()
         if (version >= intArrayOf(2018, 2)) reader.skip(4)     //m_StreamingMipmapsPriority: Int
@@ -111,6 +114,10 @@ internal class Texture2DImpl(
             }
         }
     }
+
+    private val useUnityCrunch get() = unityVersion >= intArrayOf(2017, 3) ||
+            mTextureFormat == TextureFormat.ETC_RGB4Crunched ||
+            mTextureFormat == TextureFormat.ETC2_RGBA8Crunched
 
     private fun swapForXBOX360(b: ByteArray) {
         if (platform == BuildTarget.XBOX360) b.reverse()
@@ -396,9 +403,7 @@ internal class Texture2DImpl(
             }
             TextureFormat.DXT1Crunched -> {
                 out = ByteArray(dataSize)
-                unpackCrunch(data)?.let {
-                    TextureDecoder.decodeDXT1(it, mWidth, mHeight, out)
-                }
+                TextureDecoder.decodeCrunchedDXT1(data, mWidth, mHeight, out, useUnityCrunch)
             }
             TextureFormat.DXT5 -> {
                 swapForXBOX360(data)
@@ -407,9 +412,7 @@ internal class Texture2DImpl(
             }
             TextureFormat.DXT5Crunched -> {
                 out = ByteArray(dataSize)
-                unpackCrunch(data)?.let {
-                    TextureDecoder.decodeDXT5(it, mWidth, mHeight, out)
-                }
+                TextureDecoder.decodeCrunchedDXT5(data, mWidth, mHeight, out, useUnityCrunch)
             }
             TextureFormat.BC4 -> {
                 out = ByteArray(dataSize)
@@ -477,15 +480,11 @@ internal class Texture2DImpl(
             }
             TextureFormat.ETC_RGB4Crunched -> {
                 out = ByteArray(dataSize)
-                unpackCrunch(data)?.let {
-                    TextureDecoder.decodeETC1(it, mWidth, mHeight, out)
-                }
+                TextureDecoder.decodeCrunchedETC1(data, mWidth, mHeight, out, useUnityCrunch)
             }
             TextureFormat.ETC2_RGBA8Crunched -> {
                 out = ByteArray(dataSize)
-                unpackCrunch(data)?.let {
-                    TextureDecoder.decodeETC2A8(it, mWidth, mHeight, out)
-                }
+                TextureDecoder.decodeCrunchedETC2A8(data, mWidth, mHeight, out, useUnityCrunch)
             }
             TextureFormat.ASTC_RGB_4x4, TextureFormat.ASTC_RGBA_4x4, TextureFormat.ASTC_HDR_4x4 -> {
                 out = ByteArray(dataSize)
@@ -517,18 +516,6 @@ internal class Texture2DImpl(
             }
         }
         return out
-    }
-
-    private fun unpackCrunch(data: ByteArray): ByteArray? {
-        return if (
-            unityVersion >= intArrayOf(2017, 3) ||
-            mTextureFormat == TextureFormat.ETC_RGB4Crunched ||
-            mTextureFormat == TextureFormat.ETC2_RGBA8Crunched
-        ) {
-            TextureDecoder.unpackUnityCrunch(data)
-        } else {
-            TextureDecoder.unpackCrunch(data)
-        }
     }
 }
 

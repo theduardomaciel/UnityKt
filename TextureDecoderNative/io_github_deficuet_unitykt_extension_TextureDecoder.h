@@ -10,162 +10,178 @@ extern "C" {
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeDXT1
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeDXT1
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeDXT1
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeDXT5
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeDXT5
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeDXT5
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeBC4
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeBC4
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeBC4
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeBC5
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeBC5
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeBC5
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeBC6
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeBC6
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeBC6
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeBC7
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeBC7
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeBC7
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodePVRTC
- * Signature: ([BII[BZ)V
+ * Signature: ([BII[BZ)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodePVRTC
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodePVRTC
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray, jboolean);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeETC1
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeETC1
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeETC1
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeETC2
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeETC2
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeETC2
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeETC2A1
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeETC2A1
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeETC2A1
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeETC2A8
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeETC2A8
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeETC2A8
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeATCRGB4
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeATCRGB4
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeATCRGB4
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeATCRGBA8
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeATCRGBA8
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeATCRGBA8
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeASTC
- * Signature: ([BII[BI)V
+ * Signature: ([BII[BI)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeASTC
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeASTC
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray, jint);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeEACR
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeEACR
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeEACR
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeEACRSigned
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeEACRSigned
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeEACRSigned
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeEACRG
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeEACRG
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeEACRG
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
  * Method:    decodeEACRGSigned
- * Signature: ([BII[B)V
+ * Signature: ([BII[B)I
  */
-JNIEXPORT void JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeEACRGSigned
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeEACRGSigned
   (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
- * Method:    unpackCrunch
- * Signature: ([B)[B
+ * Method:    decodeCrunchedDXT1
+ * Signature: ([BII[BZ)I
  */
-JNIEXPORT jbyteArray JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_unpackCrunch
-  (JNIEnv *, jclass, jbyteArray);
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeCrunchedDXT1
+  (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray, jboolean);
 
 /*
  * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
- * Method:    unpackUnityCrunch
- * Signature: ([B)[B
+ * Method:    decodeCrunchedDXT5
+ * Signature: ([BII[BZ)I
  */
-JNIEXPORT jbyteArray JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_unpackUnityCrunch
-  (JNIEnv *, jclass, jbyteArray);
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeCrunchedDXT5
+  (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray, jboolean);
+
+/*
+ * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
+ * Method:    decodeCrunchedETC1
+ * Signature: ([BII[BZ)I
+ */
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeCrunchedETC1
+  (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray, jboolean);
+
+/*
+ * Class:     io_github_deficuet_unitykt_extension_TextureDecoder
+ * Method:    decodeCrunchedETC2A8
+ * Signature: ([BII[BZ)I
+ */
+JNIEXPORT jint JNICALL Java_io_github_deficuet_unitykt_extension_TextureDecoder_decodeCrunchedETC2A8
+  (JNIEnv *, jclass, jbyteArray, jint, jint, jbyteArray, jboolean);
 
 #ifdef __cplusplus
 }

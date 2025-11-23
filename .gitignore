@@ -4,5 +4,36 @@ main.*
 .idea/
 .github/
 build/
+
+# Native build artifacts
 TextureDecoderNative/.vscode/
 TextureDecoderNative/build/
+TextureDecoderNative/build-linux/
+TextureDecoderNative/build-windows/
+TextureDecoderNative/build-darwin/
+TextureDecoderNative/cmake-build-*/
+
+# Generated native libraries (tracked in src/main/resources)
+*.o
+*.obj
+*.a
+*.lib
+
+# CMake artifacts
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# IDE & Editor
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Temporary files
+*.log
+*.tmp

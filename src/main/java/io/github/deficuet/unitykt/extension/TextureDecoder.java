@@ -9,7 +9,16 @@ public final class TextureDecoder {
         try {
             System.loadLibrary("TextureDecoder");
         } catch (UnsatisfiedLinkError e) {
-            NativeUtils.Companion.loadLibraryFromJar("TextureDecoder", "dll");
+            // Try to load from JAR resources with platform detection
+            try {
+                NativeUtils.Companion.loadLibraryFromJar("TextureDecoder");
+            } catch (UnsatisfiedLinkError jarError) {
+                throw new UnsatisfiedLinkError(
+                    "Failed to load TextureDecoder native library.\n" +
+                    "System library load error: " + e.getMessage() + "\n" +
+                    "JAR library load error: " + jarError.getMessage()
+                );
+            }
         }
     }
 

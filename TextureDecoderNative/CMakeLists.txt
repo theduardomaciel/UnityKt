@@ -8,15 +8,38 @@ project("TextureDecoder")
 set(CMAKE_CXX_STANDARD 14)
 
 # Add definitions from the project file
-# 'Release|x64'
-# <PreprocessorDefinitions>_T2D_DLL;NDEBUG;TEXTURE2DDECODERNATIVE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 add_compile_definitions(_T2D_DLL)
 add_compile_definitions(NDEBUG)
 add_compile_definitions(TEXTURE2DDECODERNATIVE_EXPORTS)
 
+# Detect operating system
+if(WIN32)
+    set(OS_NAME "windows")
+    set(LIB_EXTENSION "dll")
+elseif(APPLE)
+    set(OS_NAME "darwin")
+    set(LIB_EXTENSION "dylib")
+elseif(UNIX)
+    set(OS_NAME "linux")
+    set(LIB_EXTENSION "so")
+endif()
+
+# Detect architecture
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64|AMD64")
+    set(ARCH "x86_64")
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|ARM64")
+    set(ARCH "aarch64")
+else()
+    set(ARCH ${CMAKE_SYSTEM_PROCESSOR})
+endif()
+
+message(STATUS "Building for ${OS_NAME}-${ARCH}")
+
+# Find JDK
+find_package(JNI REQUIRED)
+include_directories(${JNI_INCLUDE_DIRS})
+
 # Add the given directories to those the compiler uses to search for include files
-include_directories("C:/Program Files/Java/jdk-17.0.12+7/include")
-include_directories("C:/Program Files/Java/jdk-17.0.12+7/include/win32")
 include_directories(./lib/crunch)
 include_directories(./lib/fp16)
 include_directories(./lib/unitycrunch)
@@ -53,3 +76,35 @@ add_library(TextureDecoder SHARED
         lib/unitycrunch.h
         io_github_deficuet_unitykt_extension_TextureDecoder.h
         io_github_deficuet_unitykt_extension_TextureDecoder.cc)
+
+# Set output directory based on OS and architecture
+set_target_properties(TextureDecoder PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../src/main/resources/natives/${OS_NAME}-${ARCH}"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../src/main/resources/natives/${OS_NAME}-${ARCH}"
+)
+
+# Link JNI
+target_link_libraries(TextureDecoder ${JNI_LIBRARIES})
+
+# Platform-specific settings
+if(UNIX AND NOT APPLE)
+    # Linux specific settings
+    set_target_properties(TextureDecoder PROPERTIES
+        PREFIX "lib"
+        SUFFIX ".so"
+    )
+    target_compile_options(TextureDecoder PRIVATE -fPIC)
+elseif(APPLE)
+    # macOS specific settings
+    set_target_properties(TextureDecoder PROPERTIES
+        PREFIX "lib"
+        SUFFIX ".dylib"
+    )
+    target_compile_options(TextureDecoder PRIVATE -fPIC)
+elseif(WIN32)
+    # Windows specific settings - no prefix needed
+    set_target_properties(TextureDecoder PROPERTIES
+        PREFIX ""
+        SUFFIX ".dll"
+    )
+endif()
